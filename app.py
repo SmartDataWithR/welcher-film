@@ -34,7 +34,7 @@ if description is not None:
     prompt_template = ChatPromptTemplate.from_messages(messages).partial(format_instructions=parser.get_format_instructions())
 
     MODEL_NAME = "openai/gpt-oss-120b"
-    model = ChatGroq(model=MODEL_NAME, api_key=os.getenv("GROQ_API_KEY"))
+    model = ChatGroq(model=MODEL_NAME)
 
     chain = prompt_template | model | parser
     res = chain.invoke({"plot": description, "year_min": year_range[0], "year_max": year_range[1]})
